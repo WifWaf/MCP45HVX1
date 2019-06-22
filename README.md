@@ -16,6 +16,11 @@
   * Disconect/Connect Wiper
 * TCON Read/Write Register (Write uses typedef struct - see header) 
 
+### Pending changes
+---
+* General Call Commands
+* Support for dual tap versions
+
 ### Commands
 ---
 See header file for list of function names.
