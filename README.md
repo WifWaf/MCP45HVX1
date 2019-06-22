@@ -43,3 +43,5 @@ This project is licensed under Apache 2.0 - see the LICENSE.md file for details
 ### Feedback
 ---
 Feel free to improve on the project and propose appropriate changes and even coding advice as I'm still new to this world.
+
+Please contact me at jdwifwaf@gmail.com
