@@ -2,6 +2,8 @@
 
 ![Version](https://img.shields.io/badge/Version-v1.0.0-green.svg)
 
+***Please Note: currently there is no support for non-ST versions (more than one tap). However this will be added in the future, so feel free to watch this repository***
+
  Library for MCP45HVX1 digital potentiometers using the Arduino platform. Supports most devices.
 
 ### Features
