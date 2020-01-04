@@ -1,3 +1,12 @@
+/****************************************************** 
+  Arduino library for MCP45HVX1 digital potentiometers
+  
+  Author: Jonathan Dempsey JDWifWaf@gmail.com
+  
+  Version: 1.0.1
+  License: Apache 2.0
+ *******************************************************/
+
 #ifndef _MCP45HVX1_H
 #define _MCP45HVX1_H
 
@@ -22,7 +31,7 @@ class MCP45HVX1
         /* Setup ............................................................... */
         MCP45HVX1(uint8_t address = 0x3C);
 
-        void begin(uint8_t sda = 21, uint8_t sdl = 22, TwoWire &inWire = Wire);
+        void begin(TwoWire &inWire = Wire);
 
         /* Wiper Register ...................................................... */
         uint8_t readWiper();
@@ -34,7 +43,7 @@ class MCP45HVX1
         uint8_t readTCON();
         void writeTCON(TCON_Register *inReg);
         void defaultTCON();
- 
+
         void inline shutdown()
         {
             write_TCON_R0HW(false);
@@ -70,8 +79,7 @@ class MCP45HVX1
 
     protected:
     private:
-        uint8_t _sda, _sdl;
-        uint8_t _address;
+         uint8_t _address;
 
         TwoWire* MCPWire;
         TCON_Register TCON_lib_reg;

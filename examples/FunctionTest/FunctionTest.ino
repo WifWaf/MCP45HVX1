@@ -5,10 +5,9 @@ MCP45HVX1 digiPot(0x3C);
 
 void setup()
 {  
-  Serial.begin(115200);
+  Serial.begin(9600);
 
-  digiPot.begin(21, 22);
-  
+  digiPot.begin();  
 
   Serial.println("....... Functionality Test Begin ..........");
   /* Wiper ........................... */
@@ -57,6 +56,11 @@ void setup()
 
   digiPot.shutdown();
   Serial.print("shutdown: ");
+  Serial.println(digiPot.readTCON());
+  digiPot.startup();
+
+  digiPot.startup();
+  Serial.print("startup: ");
   Serial.println(digiPot.readTCON());
   digiPot.startup();
 

@@ -1,3 +1,12 @@
+/****************************************************** 
+  Arduino library for MCP45HVX1 digital potentiometers
+  
+  Author: Jonathan Dempsey JDWifWaf@gmail.com
+  
+  Version: 1.0.1
+  License: Apache 2.0
+ *******************************************************/
+
 #include "MCP45HVX1.h"
 
 #define DEBUG 0
@@ -30,13 +39,10 @@
 /* Setup ............................................................... */
 MCP45HVX1::MCP45HVX1(uint8_t address) : _address(address) {};
  
-void MCP45HVX1::begin(uint8_t sda, uint8_t sdl, TwoWire &inWire)
+void MCP45HVX1::begin(TwoWire &inWire)
 {
     MCPWire = &inWire;
-    _sda = sda;
-    _sdl = sdl;
-
-    this->MCPWire->begin(_sda,_sdl);
+    this->MCPWire->begin();
     this->MCPWire->setClock(MCPCSPEED); 
 }
 
@@ -164,15 +170,20 @@ void MCP45HVX1::write_TCON_R0B(bool isOn)
 
 void MCP45HVX1::write_TCON_Register()
 {
-    uint8_t buff = readTCON();
+    uint8_t buff = 0xFF;
 
     this->TCON_lib_reg.R0HW ? (buff |= TCON_R0HW) : (buff ^= TCON_R0HW);
     this->TCON_lib_reg.R0A ? (buff |= TCON_R0A) : (buff ^= TCON_R0A);
     this->TCON_lib_reg.R0B ? (buff |= TCON_R0B) : (buff ^= TCON_R0B);
     this->TCON_lib_reg.R0W ? (buff |= TCON_R0W) : (buff ^= TCON_R0W);
 
+    #if DEBUG
+    Serial.print("Writing TCON: "); Serial.println(buff);
+    #endif
+
     this->MCPWire->beginTransmission(_address);
     this->MCPWire->write(MEM_TCON | COM_WRITE);
     this->MCPWire->write(buff);
     this->MCPWire->endTransmission();
 }
+
